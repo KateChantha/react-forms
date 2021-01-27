@@ -1,10 +1,11 @@
 import AutoForm from './components/AutoForm';
 import './App.css';
+import config from './config';
 
 function App() {
   return (
-    <div className="App">
-      <AutoForm />
+    <div>
+      <AutoForm form={config}/>
     </div>
   );
 }

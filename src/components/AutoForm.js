@@ -1,10 +1,11 @@
 import { css } from '@emotion/css'
 
 
-function AutoForm() {
+function AutoForm({ form }) {
   return (
     <form>
     Auto Form
+    {console.log(form)}
     </form>
   );
 }
