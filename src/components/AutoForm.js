@@ -79,7 +79,7 @@ const AutoFormCSS = css`
 `
 
 
-function AutoForm({ form }) {
+function AutoForm({ form, onSubmit }) {
   // initialize fields with form feilds props
   const [fields, setFields] = useState(
     form.fields.map(field => ({
@@ -111,11 +111,24 @@ function AutoForm({ form }) {
     setFields(newFields);
   }
 
+  const handleSubmit = e => {
+    e.preventDefault();
+   
+    const formData = fields.reduce((accu, field) => {
+      return {...accu, [field.name]: field.value}
+    }, {})
+    /*
+      formData
+      {Name: "Jane Duh", Location: "los angeles, ca", Email: "abcd@cool.com", Message: "hello from Jane"}
+     */
+    onSubmit(formData);
+  }
+
   return (
-    <form className={AutoFormCSS}>
+    <form className={AutoFormCSS} onSubmit={handleSubmit}>
       {
         fields.map(field => (
-          <Field field={field} onChange={handleChange}/>
+          <Field key={field.name} field={field} onChange={handleChange}/>
         ))
       }
 

@@ -13,7 +13,7 @@ Pass a simple configuration object to your form, and let it do the rest.
 ### Working Steps
 1. create AutoFOrm Skelton
 2. Create form config file and passing down to AutoFrom thru App
-3. Create Field Component to display label and the rest of the feild. Incase if there is no type attributes, then display default.
+3. Create Field Component to display label and the rest of the feild. Incase if there is no type attributes, then display the default.
 ```
 const {label, ...attributes} = field;
 ```
@@ -23,3 +23,5 @@ const {label, ...attributes} = field;
    Build Message component
    Add button with buttonText config
 6. Implement a handleChange function to grabs the name attribute from the current feild. Map through the feilds array and update the value that matches the name property.
+7. Create a handleSubmit function that will intercept the form submittal, format the values into an easy to consume object, and trigger a callback passed as a props.
+- go to App and set up the status state, and the callback.
