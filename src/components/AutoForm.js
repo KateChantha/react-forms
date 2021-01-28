@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { css } from '@emotion/css'
 import Field from './Field';
+import Spinner from './Spinner';
 
 
 function AutoForm({ form }) {
@@ -31,6 +32,10 @@ function AutoForm({ form }) {
           <Field field={field} />
         ))
       }
+
+      <div>
+        <Spinner />
+      </div>
     </form>
   );
 }
