@@ -1,6 +1,10 @@
 import { css } from '@emotion/css'
 
-const Spinner = ({ loading = true }) => {
+/**
+ * @param {loading} if status is updated to laoding and in formConfig has property spinner to true
+ * loading={status === 'loading' && spinner}
+ */
+const Spinner = ({ loading }) => {
   return loading ? (
     <img
       src="https://i.imgur.com/01yMDgZ.gif"

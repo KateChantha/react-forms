@@ -7,11 +7,21 @@ function App() {
   const [status, setStatus] = useState('')
 
   const handleSubmit = formData => {
-    console.log("form in nadleSUbmit", formData)
+    setStatus('loading')
+
+    // fake AJAX
+    setTimeout(() => {
+      // setStatus('success')
+      setStatus('error')
+    }, 3000)
   }
   return (
     <div>
-      <AutoForm form={formConfig} onSubmit={handleSubmit}/>
+      <AutoForm 
+        form={formConfig} 
+        onSubmit={handleSubmit}
+        status={status}
+      />
     </div>
   );
 }

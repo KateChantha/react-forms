@@ -79,7 +79,7 @@ const AutoFormCSS = css`
 `
 
 
-function AutoForm({ form, onSubmit }) {
+function AutoForm({ form, onSubmit, status }) {
   // initialize fields with form feilds props
   const [fields, setFields] = useState(
     form.fields.map(field => ({
@@ -124,6 +124,7 @@ function AutoForm({ form, onSubmit }) {
     onSubmit(formData);
   }
 
+  const { messages, spinner } = form.config
   return (
     <form className={AutoFormCSS} onSubmit={handleSubmit}>
       {
@@ -132,13 +133,13 @@ function AutoForm({ form, onSubmit }) {
         ))
       }
 
-      <div className="form-buttom">
-        <button type="submit">
+      <div className="form-bottom">
+        <button type="submit" disabled={status === 'success'}>
           {form.config.buttonText || 'Submit'}
         </button>
-        {/* <Spinner loading={status === 'loading' && spinner} /> */}
+        <Spinner loading={status === 'loading' && spinner} />
       </div>
-      {/* <Message status={status} text={messages[status]} /> */}
+      <Message status={status} text={messages[status]} />
     </form>
   );
 }
