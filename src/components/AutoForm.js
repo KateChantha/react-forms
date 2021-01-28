@@ -108,10 +108,13 @@ function AutoForm({ form }) {
         ))
       }
 
-      <div>
-        {/* <Spinner /> */}
-        <Message text='Hello text' />
+      <div className="form-buttom">
+        <button type="submit">
+          {form.config.buttonText || 'Submit'}
+        </button>
+        {/* <Spinner loading={status === 'loading' && spinner} /> */}
       </div>
+      {/* <Message status={status} text={messages[status]} /> */}
     </form>
   );
 }
