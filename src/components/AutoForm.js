@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { css } from '@emotion/css'
 import Field from './Field';
 import Spinner from './Spinner';
@@ -99,6 +99,13 @@ function AutoForm({ form, onSubmit, status }) {
     value: ""
   } 
   */
+
+  // To clean up input field after success
+  useEffect(() => {
+    if (status === 'success') {
+      setFields(fields.map(field => ({...field, value: ''})))
+    }
+  }, [status])
 
   const handleChange = e => {
     const name = e.target.getAttribute("name");

@@ -11,8 +11,8 @@ function App() {
 
     // fake AJAX
     setTimeout(() => {
-      // setStatus('success')
-      setStatus('error')
+      setStatus('success')
+      // setStatus('error')
     }, 3000)
   }
   return (
