@@ -20,4 +20,5 @@ const {label, ...attributes} = field;
 ```
 4. Setting state in AutoForm. Grab all the fields from prop and store them to local state.
 - Check if user added a name property to each field, then we add a value property as well.
-5. Build Spinner
+5. Build Spinner component
+   Build Message component
