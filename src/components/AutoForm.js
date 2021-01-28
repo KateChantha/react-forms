@@ -1,22 +1,14 @@
 import { css } from '@emotion/css'
-import { Fragment } from 'react';
+import Field from './Field';
 
 
 function AutoForm({ form }) {
   return (
     <form>
       {
-        form.fields.map(feild => {
-          return feild.type === 'textarea'
-            ? (<Fragment>
-                <label>{feild.label}</label>
-                <textarea />
-              </Fragment>)
-            : (<Fragment>
-              <label>{feild.label}</label>
-                <input type={feild.type} />
-              </Fragment>)
-        })
+        form.fields.map(field => (
+          <Field field={field} />
+        ))
       }
     </form>
   );
