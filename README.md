@@ -8,7 +8,6 @@ Pass a simple configuration object to your form, and let it do the rest.
 - Simple validation
 
 ## Config
-
 - 2 root properties that are config and feilds (see src/formConfig.js)
 
 ### Working Steps
@@ -22,3 +21,5 @@ const {label, ...attributes} = field;
 - Check if user added a name property to each field, then we add a value property as well.
 5. Build Spinner component
    Build Message component
+   Add button with buttonText config
+6. Implement a handleChange function to grabs the name attribute from the current feild. Map through the feilds array and update the value that matches the name property.

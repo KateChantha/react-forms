@@ -12,7 +12,7 @@ export default {
   fields: [
     {
       label: 'Name',
-      placeholder: 'Joe Scully',
+      placeholder: 'John Doe',
       required: true
     },
     {

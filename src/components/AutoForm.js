@@ -100,11 +100,22 @@ function AutoForm({ form }) {
   } 
   */
 
+  const handleChange = e => {
+    const name = e.target.getAttribute("name");
+    // Map through the feilds array and update the value that matches the name property.
+    const newFields = fields.map(field => {
+      return field.name === name
+            ? {...field, value: e.target.value}
+            : field;
+    })
+    setFields(newFields);
+  }
+
   return (
     <form className={AutoFormCSS}>
       {
         fields.map(field => (
-          <Field field={field} />
+          <Field field={field} onChange={handleChange}/>
         ))
       }
 
