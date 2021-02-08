@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import {useState} from 'react';
+import { css } from '@emotion/css';
 import AutoForm from './components/AutoForm';
 import './App.css';
 import formConfig from './formConfig';
@@ -16,7 +17,8 @@ function App() {
     }, 3000)
   }
   return (
-    <div>
+    <div className={ContainerCSS}>
+      <h1>Get VIP Access</h1>
       <AutoForm 
         form={formConfig} 
         onSubmit={handleSubmit}
@@ -25,5 +27,15 @@ function App() {
     </div>
   );
 }
+
+const ContainerCSS = css`
+  padding: 125px 0 0 80px;
+
+  h1 {
+    color: #fff;
+    font-size: 56px;
+    margin: 0 0 15px;
+  }
+`
 
 export default App;
