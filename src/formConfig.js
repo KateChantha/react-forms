@@ -12,11 +12,13 @@ export default {
   fields: [
     {
       label: 'Name',
+      type: 'text',
       placeholder: 'John Doe',
       required: true
     },
     {
       label: 'Location',
+      type: 'text',
       placeholder: 'Boston, MA',
       required: true
     },
