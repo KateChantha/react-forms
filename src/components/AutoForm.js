@@ -153,6 +153,7 @@ function AutoForm({ form, onSubmit, status }) {
     const value = e.target.value
 
     // get field's name as pass to fieldsRef.current 
+    // which is a updateFields function that reference the clousure value of input feilds
     const update = () => {
       fieldsRef.current(name, value)
     }

@@ -48,3 +48,4 @@ The useCallback hook will prevent our React form input handler from causing re-r
 
 1. Wrapping handleChange in a useCallback with a fields dependency will prevent it from being receated on every render if fields hasn't changed.
 2. Then, must implement memo in Field component as an addendum to make it work. memo will work at the field level to prevent re-renders if it's props haven't changed.
+3. useRef as a function updateFeilds with the closure value/state of the feilds. This to prevent re-render due to state feild is changed.
