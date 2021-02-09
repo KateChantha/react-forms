@@ -32,7 +32,7 @@ const {label, ...attributes} = field;
 - AutoForm, disabled the button when status is success.
 - AutoForm, useEffect will re-render/ clean up input value field when status is success.
 
-#### PART ONE - Performance Enhancements
+#### PART TWO - Performance Enhancements
 From part one, feilds will be re-render due to...
 - the entire feilds object is changeing every time an input field is changed. 
 - Also, when we change state in the parent componenet(App.js) as when we use two status call. There is really no reason why these fields need to be re-rendered when this happens.
