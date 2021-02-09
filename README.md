@@ -31,3 +31,19 @@ const {label, ...attributes} = field;
 - Message when status is success or error.
 - AutoForm, disabled the button when status is success.
 - AutoForm, useEffect will re-render/ clean up input value field when status is success.
+
+#### PART ONE - Performance Enhancements
+From part one, feilds will be re-render due to...
+- the entire feilds object is changeing every time an input field is changed. 
+- Also, when we change state in the parent componenet(App.js) as when we use two status call. There is really no reason why these fields need to be re-rendered when this happens.
+
+By using the following React Hooks, we can prevent unnecessary re-renders and ensure our component will remain performance driven as the config file adds larger amounts of fields.
+
+React Hooks Implemented:
+- useCallback
+- memo
+- useRef
+
+The useCallback hook will prevent our React form input handler from causing re-renders, and memo will work at the field level to prevent re-renders if it's props haven't changed. The use of memo ensures that only the field that is accepting a new value re-renders, while the other form fields are ignored.
+
+1. Wrapping handleChange in a useCallback with a fields dependency will prevent it from being receated on every render if fields hasn't changed.
