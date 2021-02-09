@@ -47,3 +47,4 @@ React Hooks Implemented:
 The useCallback hook will prevent our React form input handler from causing re-renders, and memo will work at the field level to prevent re-renders if it's props haven't changed. The use of memo ensures that only the field that is accepting a new value re-renders, while the other form fields are ignored.
 
 1. Wrapping handleChange in a useCallback with a fields dependency will prevent it from being receated on every render if fields hasn't changed.
+2. Then, must implement memo in Field component as an addendum to make it work. memo will work at the field level to prevent re-renders if it's props haven't changed.

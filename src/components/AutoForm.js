@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { css } from '@emotion/css'
 import MemoField from './Field';
 import Spinner from './Spinner';
@@ -81,6 +81,9 @@ const AutoFormCSS = css`
 
 function AutoForm({ form, onSubmit, status }) {
   console.log("render in AutoForm---------")
+
+  const fieldsRef = useRef(); 
+
   // initialize fields with form feilds props
   const [fields, setFields] = useState(
     form.fields.map(field => ({
@@ -107,10 +110,29 @@ function AutoForm({ form, onSubmit, status }) {
       console.log("render in success submit ---------")
       setFields(fields.map(field => ({...field, value: ''})))
     }
-  }, [status])
+  }, [status]);
+
+  // --------------------------
+  //       useRef
+  // --------------------------
+  const updateFields = (name, value) => {
+    const newFields = fields.map(field => {
+      return field.name === name 
+            ? { ...field, value } 
+            : field;
+    })
+    setFields(newFields)
+  }
+
+  // call every time 
+  useEffect(() => {
+    fieldsRef.current = updateFields
+  })
 
   // --------------------------
   //       useCallbak
+  // to prevent creating new handleChange
+  // instant every single time
   // --------------------------
   /**
   const handleChange = e => {
@@ -125,17 +147,18 @@ function AutoForm({ form, onSubmit, status }) {
   } 
   */
 
+  /** with [] dependency, handleChange is run once **/
   const handleChange = useCallback(e => {
     const name = e.target.getAttribute('name')
     const value = e.target.value
 
-    const newFields = fields.map(field => {
-      return field.name === name
-            ? { ...field, value }
-            : field;
-    })
-    setFields(newFields);
-  }, [fields])
+    // get field's name as pass to fieldsRef.current 
+    const update = () => {
+      fieldsRef.current(name, value)
+    }
+
+    update()
+  }, [])
 
   //---------------------------
 

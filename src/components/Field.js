@@ -3,7 +3,7 @@ import { Fragment, memo } from 'react';
 
 function Field({ field, onChange }) {
   const {label, ...attributes} = field;
-  console.log("render in Feild---------")
+  console.log(`${label} in Feild --`)
 
   /*console.log('attributes', attributes )
   {type: "textarea", 
