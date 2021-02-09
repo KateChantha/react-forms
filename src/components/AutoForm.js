@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { css } from '@emotion/css'
-import Field from './Field';
+import MemoField from './Field';
 import Spinner from './Spinner';
 import Message from './Messge'
 
@@ -80,6 +80,7 @@ const AutoFormCSS = css`
 
 
 function AutoForm({ form, onSubmit, status }) {
+  console.log("render in AutoForm---------")
   // initialize fields with form feilds props
   const [fields, setFields] = useState(
     form.fields.map(field => ({
@@ -103,10 +104,15 @@ function AutoForm({ form, onSubmit, status }) {
   // To clean up input field after success
   useEffect(() => {
     if (status === 'success') {
+      console.log("render in success submit ---------")
       setFields(fields.map(field => ({...field, value: ''})))
     }
   }, [status])
 
+  // --------------------------
+  //       useCallbak
+  // --------------------------
+  /**
   const handleChange = e => {
     const name = e.target.getAttribute("name");
     // Map through the feilds array and update the value that matches the name property.
@@ -116,7 +122,22 @@ function AutoForm({ form, onSubmit, status }) {
             : field;
     })
     setFields(newFields);
-  }
+  } 
+  */
+
+  const handleChange = useCallback(e => {
+    const name = e.target.getAttribute('name')
+    const value = e.target.value
+
+    const newFields = fields.map(field => {
+      return field.name === name
+            ? { ...field, value }
+            : field;
+    })
+    setFields(newFields);
+  }, [fields])
+
+  //---------------------------
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -136,7 +157,7 @@ function AutoForm({ form, onSubmit, status }) {
     <form className={AutoFormCSS} onSubmit={handleSubmit}>
       {
         fields.map(field => (
-          <Field key={field.name} field={field} onChange={handleChange}/>
+          <MemoField key={field.name} field={field} onChange={handleChange}/>
         ))
       }
 
